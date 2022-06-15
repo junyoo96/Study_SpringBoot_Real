@@ -25,7 +25,7 @@ public class Member {
             // 테이블간의 연관관계를 매핑할 때, 연관관계의 주인이 아닌쪽에 사용
         //mappedBy : Order 객체의 어떤 필드와 매칭되는지를 지정
             //즉,  Order 클래스의 member 변수와 연결하기 위함
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member ")
     private List<Order> orders = new ArrayList<>();
 
 }
