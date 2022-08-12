@@ -1,0 +1,24 @@
+# 테스트용 application.yml
+  # 테스트 케이스를 위한 스프링 환경과, 일반적으로 애플리케이션을 실행하는 환경은 보통 다르므로 설정 파일을 다르게 사용하기 위해 사용
+  # 테스트는 케이스 격리된 환경에서 실행하고, 끝나면 데이터를 초기화하는 것이 좋기 때문
+
+# 테스트 실행시 src/resources/application.yml 파일 보다 우선적으로 읽힘
+
+spring:
+#  datasource:
+#    url: jdbc:h2:mem:test
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    properties:
+#      hibernate:
+##        show_sql: truet
+#        format_sql: true
+
+logging.level:
+  org.hibernate.SQL: debug
+#  org.hibernate.type: trace

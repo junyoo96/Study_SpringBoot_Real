@@ -9,11 +9,10 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-@RequiredArgsConstructor
 public class MemberRepository {
 
 //    // Spring이 생성한 EntityManager를 주입해주는 역할
-//    @PersistenceContext
+    @PersistenceContext
     private EntityManager em;
 
     public void save(Member member){
