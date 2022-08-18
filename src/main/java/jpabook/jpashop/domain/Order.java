@@ -88,6 +88,7 @@ public class Order {
         if(delivery.getStatus() == DeliveryStatus.COMP){
             throw new IllegalStateException("이미 배송완료된 상품은 취소가 불가능합니다.");
         }
+        // 변경감지 기능 덕분에 DB에 쿼리를 날리는 코드 없이 트랜잭션 커밋 시점에 변경사항에 대해 자동으로 쿼리를 만들어서 DB를 업데이트 함
         // 배달상태 '취소'로 변경
         this.setStatus(OrderStatus.CANCEL);
         // 모든 OrderItem에 대해서도 '취소' 처리

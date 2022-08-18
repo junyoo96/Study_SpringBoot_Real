@@ -20,6 +20,16 @@ public class ItemService {
         itemRepository.save(item);
     }
 
+    //merge 말고 변경감지 방법 사용하기
+    @Transactional
+    public void updateItem(Long id, String name, int price) {
+        Item item = itemRepository.findOne(id);
+        //setter도 item 엔티티 함수로 변경할 데이터만 변경하는 함수를 따로 만들어서 하는 걸로 대체하는 것이 좋음
+        //item.change(name, price);
+        item.setName(name);
+        item.setPrice(price);
+    }
+
     public List<Item> findItems() {
         return itemRepository.findAll();
     }
