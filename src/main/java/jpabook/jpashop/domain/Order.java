@@ -49,7 +49,7 @@ public class Order {
     private OrderStatus status; // 주문 상태 [ORDER, CANCEL]
 
     //==연관관계 편의 메서드==//
-    public void setMemeber(Member member){
+    public void setMember(Member member){
         this.member = member;
         member.getOrders().add(this);
     }
@@ -108,7 +108,4 @@ public class Order {
         }
         return totalPrice;
     }
-
-
-
 }
