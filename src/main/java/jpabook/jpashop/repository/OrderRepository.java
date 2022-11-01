@@ -26,7 +26,6 @@ public class OrderRepository {
         return em.find(Order.class, id);
     }
 
-
     /**
      * JPQL 동적 쿼리 수행
     **/
@@ -54,5 +53,46 @@ public class OrderRepository {
         TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000); //최대 1000건
         return query.getResultList();
 
+    }
+
+    /**
+     * 주문 조회
+     * OneToOne, ManyToOne의 경우 fetch join 사용
+    **/
+    public List<Order> findAllWithMemberDelivery() {
+        return em.createQuery(
+                "select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class)
+                .getResultList();
+    }
+
+    /**
+     * 주문 조회 - V3
+     * OneToMany 경우 fetch join 사용
+    **/
+    public List<Order> findAllWithItem() {
+        return em.createQuery(
+                "select distinct o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d" +
+                        " join fetch o.orderItems oi" +
+                        " join fetch oi.item i", Order.class)
+                .getResultList();
+    }
+
+    /**
+     * 주문 조회 - V3.1
+     * fetch join하면서 페이징 가능하게 하기
+     * ordeitems는 hibernate.default_batch_fetch_size 옵션 사용해서 n + 1 문제 해결
+    **/
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        return em.createQuery(
+                "select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
     }
 }

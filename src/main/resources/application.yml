@@ -12,6 +12,7 @@ spring:
       hibernate:
 #        show_sql: true
         format_sql: true
+        default_batch_fetch_size: 1000 # OneToMany 관계 조회시 fetch join 사용했을 때 페이징 사용할 수 있게 하기 위해 사용
 
 logging.level:
   org.hibernate.SQL: debug
